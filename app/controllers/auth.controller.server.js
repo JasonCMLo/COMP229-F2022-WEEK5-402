@@ -6,6 +6,7 @@ import passport from "passport";
 
 // user model
 import User from "../models/user.js";
+import { UserDisplayName } from "../utils/index.js";
 
 export function DisplayLoginPage(req, res, next) {
   if (!req.user) {
@@ -13,6 +14,7 @@ export function DisplayLoginPage(req, res, next) {
       title: "Login",
       page: "login",
       messages: req.flash("loginMessage"),
+      displayName: UserDisplayName(req),
     });
   }
   return res.redirect("/movie-list");
@@ -24,6 +26,7 @@ export function DisplayRegisterPage(req, res, next) {
       title: "Register",
       page: "register",
       messages: req.flash("registerMessage"),
+      displayName: UserDisplayName(req),
     });
   }
 }
